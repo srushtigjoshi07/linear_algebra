@@ -1,4 +1,5 @@
-import { FileText, Code, User, Calendar } from "lucide-react";
+import { FileText, Code, User, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
 
 interface LabCardProps {
   labNumber: number;
@@ -8,6 +9,8 @@ interface LabCardProps {
   date: string;
   problems: string[];
   concepts: string[];
+  images?: string[];
+  isLabTest?: boolean;
 }
 
 const LabCard = ({
@@ -18,7 +21,11 @@ const LabCard = ({
   date,
   problems,
   concepts,
+  images = [],
+  isLabTest = false,
 }: LabCardProps) => {
+  const [showImages, setShowImages] = useState(false);
+
   return (
     <div className="lab-card card-hover p-6 pl-8">
       {/* Header */}
@@ -26,7 +33,7 @@ const LabCard = ({
         <div>
           <div className="inline-flex items-center gap-2 bg-accent/10 text-accent-foreground rounded-full px-3 py-1 text-xs font-medium mb-2">
             <FileText className="w-3 h-3" />
-            Lab Assessment {labNumber}
+            {isLabTest ? "Lab Test" : `Lab Assessment ${labNumber}`}
           </div>
           <h3 className="text-xl font-serif font-semibold text-foreground">
             {title}
@@ -67,7 +74,7 @@ const LabCard = ({
       </div>
 
       {/* Concepts */}
-      <div>
+      <div className="mb-4">
         <h4 className="text-sm font-semibold text-foreground mb-2">
           Mathematical Concepts
         </h4>
@@ -82,6 +89,33 @@ const LabCard = ({
           ))}
         </div>
       </div>
+
+      {/* PDF Screenshots */}
+      {images.length > 0 && (
+        <div className="mt-4 pt-4 border-t border-border">
+          <button
+            onClick={() => setShowImages(!showImages)}
+            className="flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+          >
+            {showImages ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            {showImages ? "Hide" : "View"} PDF Pages ({images.length})
+          </button>
+          
+          {showImages && (
+            <div className="mt-4 grid gap-4">
+              {images.map((img, index) => (
+                <div key={index} className="rounded-lg overflow-hidden border border-border shadow-sm">
+                  <img 
+                    src={img} 
+                    alt={`${isLabTest ? "Lab Test" : `Lab ${labNumber}`} - Page ${index + 1}`}
+                    className="w-full h-auto"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
