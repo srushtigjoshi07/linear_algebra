@@ -44,8 +44,8 @@ const LabAssessments = () => {
     {
       labNumber: 4,
       title: "Robot Kinematics",
-      studentName: "Chidanand Karennavar",
-      srn: "01FE24BAR027",
+      studentName: "Srushti G Joshi",
+      srn: "01FE24BAR014",
       date: "4 Dec 2025",
       problems: [
         "Planar 2R robot with L₁=5m, L₂=3m at θ₁=45°, θ₂=30°: compute end effector position",
