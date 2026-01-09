@@ -1,6 +1,9 @@
 import LabCard from "./LabCard";
 
 // Import lab images
+import lab1Page1 from "@/assets/labs/lab1-page1.jpg";
+import lab1Page2 from "@/assets/labs/lab1-page2.jpg";
+import lab1Page3 from "@/assets/labs/lab1-page3.jpg";
 import lab2Page1 from "@/assets/labs/lab2-page1.jpg";
 import lab2Page2 from "@/assets/labs/lab2-page2.jpg";
 import lab2Page3 from "@/assets/labs/lab2-page3.jpg";
@@ -28,7 +31,7 @@ const LabAssessments = () => {
         "Solve using matrix algebra with k₁=100, k₂=200, k₃=300, k₄=500, k₅=400, k₆=150 N/m",
       ],
       concepts: ["Stiffness Matrix", "Matrix Equation Kx=F", "NumPy linalg.solve", "Physical Interpretation"],
-      images: [],
+      images: [lab1Page1, lab1Page2, lab1Page3],
     },
     {
       labNumber: 2,
