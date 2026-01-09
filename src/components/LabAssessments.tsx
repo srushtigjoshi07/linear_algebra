@@ -32,6 +32,7 @@ const LabAssessments = () => {
       ],
       concepts: ["Stiffness Matrix", "Matrix Equation Kx=F", "NumPy linalg.solve", "Physical Interpretation"],
       images: [lab1Page1, lab1Page2, lab1Page3],
+      pdfUrl: "/pdfs/lab1-spring-mass-systems.pdf",
     },
     {
       labNumber: 2,
@@ -46,6 +47,7 @@ const LabAssessments = () => {
       ],
       concepts: ["Static Equilibrium", "Free Body Diagrams", "Matrix Algebra", "Tension/Compression"],
       images: [lab2Page1, lab2Page2, lab2Page3],
+      pdfUrl: "/pdfs/lab2-truss-analysis.pdf",
     },
     {
       labNumber: 3,
@@ -60,6 +62,7 @@ const LabAssessments = () => {
       ],
       concepts: ["Gauss Elimination", "LU Decomposition", "Row Operations", "Forward/Backward Substitution"],
       images: [lab3Page1, lab3Page2, lab3Page3],
+      pdfUrl: "/pdfs/lab3-gauss-lu-decomposition.pdf",
     },
     {
       labNumber: 4,
@@ -74,6 +77,7 @@ const LabAssessments = () => {
       ],
       concepts: ["Homogeneous Transformation", "Forward Kinematics", "Workspace Analysis", "2R/3R Manipulators"],
       images: [lab4Page1, lab4Page2, lab4Page3],
+      pdfUrl: "/pdfs/lab4-robot-kinematics.pdf",
     },
   ];
 
@@ -90,6 +94,7 @@ const LabAssessments = () => {
     ],
     concepts: ["Stiffness Matrix", "Static Equilibrium", "NumPy linalg.solve", "Spring-Mass Systems"],
     images: [labTestPage1, labTestPage2, labTestPage3],
+    pdfUrl: "/pdfs/labtest-static-equilibrium.pdf",
     isLabTest: true,
   };
 
