@@ -1,5 +1,6 @@
-import { FileText, Code, User, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { FileText, Code, User, Calendar, ChevronDown, ChevronUp, Download } from "lucide-react";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 interface LabCardProps {
   labNumber: number;
@@ -10,6 +11,7 @@ interface LabCardProps {
   problems: string[];
   concepts: string[];
   images?: string[];
+  pdfUrl?: string;
   isLabTest?: boolean;
 }
 
@@ -22,9 +24,21 @@ const LabCard = ({
   problems,
   concepts,
   images = [],
+  pdfUrl,
   isLabTest = false,
 }: LabCardProps) => {
   const [showImages, setShowImages] = useState(false);
+
+  const handleDownload = () => {
+    if (pdfUrl) {
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = pdfUrl.split('/').pop() || 'lab-assessment.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
 
   return (
     <div className="lab-card card-hover p-6 pl-8">
@@ -90,9 +104,10 @@ const LabCard = ({
         </div>
       </div>
 
-      {/* PDF Screenshots */}
-      {images.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-border">
+      {/* Actions Row */}
+      <div className="mt-4 pt-4 border-t border-border flex flex-wrap items-center gap-3">
+        {/* PDF Screenshots Toggle */}
+        {images.length > 0 && (
           <button
             onClick={() => setShowImages(!showImages)}
             className="flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
@@ -100,20 +115,34 @@ const LabCard = ({
             {showImages ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             {showImages ? "Hide" : "View"} PDF Pages ({images.length})
           </button>
-          
-          {showImages && (
-            <div className="mt-4 grid gap-4">
-              {images.map((img, index) => (
-                <div key={index} className="rounded-lg overflow-hidden border border-border shadow-sm">
-                  <img 
-                    src={img} 
-                    alt={`${isLabTest ? "Lab Test" : `Lab ${labNumber}`} - Page ${index + 1}`}
-                    className="w-full h-auto"
-                  />
-                </div>
-              ))}
+        )}
+
+        {/* Download Button */}
+        {pdfUrl && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleDownload}
+            className="flex items-center gap-2 ml-auto"
+          >
+            <Download className="w-4 h-4" />
+            Download PDF
+          </Button>
+        )}
+      </div>
+      
+      {/* PDF Page Images */}
+      {showImages && images.length > 0 && (
+        <div className="mt-4 grid gap-4">
+          {images.map((img, index) => (
+            <div key={index} className="rounded-lg overflow-hidden border border-border shadow-sm">
+              <img 
+                src={img} 
+                alt={`${isLabTest ? "Lab Test" : `Lab ${labNumber}`} - Page ${index + 1}`}
+                className="w-full h-auto"
+              />
             </div>
-          )}
+          ))}
         </div>
       )}
     </div>
