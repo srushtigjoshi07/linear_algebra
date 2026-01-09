@@ -1,5 +1,19 @@
 import LabCard from "./LabCard";
 
+// Import lab images
+import lab2Page1 from "@/assets/labs/lab2-page1.jpg";
+import lab2Page2 from "@/assets/labs/lab2-page2.jpg";
+import lab2Page3 from "@/assets/labs/lab2-page3.jpg";
+import lab3Page1 from "@/assets/labs/lab3-page1.jpg";
+import lab3Page2 from "@/assets/labs/lab3-page2.jpg";
+import lab3Page3 from "@/assets/labs/lab3-page3.jpg";
+import lab4Page1 from "@/assets/labs/lab4-page1.jpg";
+import lab4Page2 from "@/assets/labs/lab4-page2.jpg";
+import lab4Page3 from "@/assets/labs/lab4-page3.jpg";
+import labTestPage1 from "@/assets/labs/labtest-page1.jpg";
+import labTestPage2 from "@/assets/labs/labtest-page2.jpg";
+import labTestPage3 from "@/assets/labs/labtest-page3.jpg";
+
 const LabAssessments = () => {
   const labs = [
     {
@@ -14,6 +28,7 @@ const LabAssessments = () => {
         "Solve using matrix algebra with k₁=100, k₂=200, k₃=300, k₄=500, k₅=400, k₆=150 N/m",
       ],
       concepts: ["Stiffness Matrix", "Matrix Equation Kx=F", "NumPy linalg.solve", "Physical Interpretation"],
+      images: [],
     },
     {
       labNumber: 2,
@@ -27,6 +42,7 @@ const LabAssessments = () => {
         "Solve 8×8 system for internal forces with 400N horizontal and 500N vertical loads",
       ],
       concepts: ["Static Equilibrium", "Free Body Diagrams", "Matrix Algebra", "Tension/Compression"],
+      images: [lab2Page1, lab2Page2, lab2Page3],
     },
     {
       labNumber: 3,
@@ -40,6 +56,7 @@ const LabAssessments = () => {
         "Implement forward and backward substitution in Python",
       ],
       concepts: ["Gauss Elimination", "LU Decomposition", "Row Operations", "Forward/Backward Substitution"],
+      images: [lab3Page1, lab3Page2, lab3Page3],
     },
     {
       labNumber: 4,
@@ -53,8 +70,25 @@ const LabAssessments = () => {
         "Plot workspace for joint limits using homogeneous transformation matrices",
       ],
       concepts: ["Homogeneous Transformation", "Forward Kinematics", "Workspace Analysis", "2R/3R Manipulators"],
+      images: [lab4Page1, lab4Page2, lab4Page3],
     },
   ];
+
+  const labTest = {
+    labNumber: 0,
+    title: "Static Equilibrium - 4-Mass Spring System",
+    studentName: "Srushti G Joshi",
+    srn: "01FE24BAR014",
+    date: "7 Jan 2026",
+    problems: [
+      "Construct the 4×4 Stiffness Matrix K for a 4-mass spring system",
+      "Calculate displacement of each mass from equilibrium position",
+      "Solve with k₁=20, k₂=20, k₃=30, k₄=30 N/m and forces f₁=15N, f₂=0N, f₄=20N",
+    ],
+    concepts: ["Stiffness Matrix", "Static Equilibrium", "NumPy linalg.solve", "Spring-Mass Systems"],
+    images: [labTestPage1, labTestPage2, labTestPage3],
+    isLabTest: true,
+  };
 
   return (
     <section id="labs" className="py-20 bg-background">
@@ -73,6 +107,21 @@ const LabAssessments = () => {
           </p>
         </div>
 
+        {/* Lab Test Section */}
+        <div className="mb-12">
+          <h3 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">
+            Lab Test
+          </h3>
+          <div className="max-w-2xl mx-auto animate-slide-up">
+            <LabCard {...labTest} />
+          </div>
+        </div>
+
+        {/* Lab Assessments */}
+        <h3 className="text-2xl font-serif font-semibold text-foreground mb-6 text-center">
+          Lab Assessments
+        </h3>
+        
         {/* Lab cards grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {labs.map((lab, index) => (
